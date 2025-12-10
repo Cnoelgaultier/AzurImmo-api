@@ -1,14 +1,15 @@
 package bts.sio.azurimmo.controller;
 
 import bts.sio.azurimmo.model.Appartement;
-
-import org.springframework.web.bind.annotation.RequestParam;
+import bts.sio.azurimmo.model.dto.AppartementDTO;
+import bts.sio.azurimmo.model.dto.BatimentDTO;
 import bts.sio.azurimmo.service.AppartementService;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -50,13 +51,28 @@ public class AppartementController {
         return appartementService.getAppartementsSuperieursA(minSurface);
     }
 
-
-    @GetMapping("/{appartementId}") 
-    public Optional<Appartement> getAppartementById(@PathVariable Long appartementId) {
-        return appartementService.getAppartement(appartementId);
+    
+    /*@GetMapping("/{appartementId}")
+    public Optional <AppartementDTO> getAppartementDTO(@PathVariable long appartementId) {
+        return appartementService.getAppartementDTO(appartementId);
+    }*/
+    
+    @GetMapping("/re/{appartementId}")
+    public ResponseEntity<AppartementDTO> getAppartementDTO(@PathVariable long appartementId) {
+            return appartementService.getAppartementDTO(appartementId)
+                                  .map(ResponseEntity::ok)  
+                                  .orElse(ResponseEntity.notFound().build()); 
     }
 
- // Dans AppartementController.java
+    @GetMapping("/dto")
+    public List<AppartementDTO> getAllAppartement() {
+        return appartementService.getAppartementDTO(); 
+    }
+
+    
+   
+
+    
 
 
 }

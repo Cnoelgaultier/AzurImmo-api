@@ -27,10 +27,10 @@ public class Appartement {
 	 private Long id;
 
 	 @Column(name="numero")
-	 private int numero;
+	 private String numero;
 
 	 @Column(name="surface")
-	 private Double surface;
+	 private Float surface;
 	 
 	 @Column(name="nbpiece")
 	 private int nbpiece;

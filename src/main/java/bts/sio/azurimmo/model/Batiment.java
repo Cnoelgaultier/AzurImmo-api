@@ -30,5 +30,7 @@ public class Batiment {
 	 @Column(name="ville")
 	 private String ville;
 
+	 @OneToMany(mappedBy = "batiment")
+	 private List<Appartement> appartements;
 	 
 }
