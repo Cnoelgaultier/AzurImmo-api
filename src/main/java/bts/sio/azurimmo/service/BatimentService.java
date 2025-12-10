@@ -44,4 +44,13 @@ public class BatimentService {
 	                                 .map(BatimentMapper::toDTO)
 	                                 .collect(Collectors.toList());
 	}
+	 
+	 
+	    public BatimentDTO saveBatimentDTO(BatimentDTO dto) {
+	        Batiment entity = BatimentMapper.toEntity(dto);
+	        Batiment saved = batimentRepository.save(entity);
+	        return BatimentMapper.toDTO(saved);
+	    }
+	    
+	    
 }

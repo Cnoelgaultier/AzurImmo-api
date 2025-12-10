@@ -54,4 +54,11 @@ public class AppartementService {
 }
 
 	
+	
+	public AppartementDTO saveAppartementDTO(AppartementDTO dto) {
+        Appartement entity = AppartementMapper.toEntity(dto);
+        Appartement saved = appartementRepository.save(entity);
+        return AppartementMapper.toDTO(saved);
+    }
+	
 }
